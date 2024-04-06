@@ -36,22 +36,23 @@ def recommend():
         (all_movies_df['rating'] >= minimum_rating)
     ]
 
-    # Select a random movie from the filtered dataset
+    # Check if any movies were found
     if not filtered_movies.empty:
-        recommended_movie = filtered_movies.sample(1).iloc[0]
-        return render_template('recommendation.html', 
-                               title=recommended_movie['movie_name'],  # Adjusted to use the correct column name
-                               genre=recommended_movie['genre'], 
-                               rating=recommended_movie['rating'])
+        # Convert DataFrame to a list of dictionaries for easier handling in the template
+        movies_list = filtered_movies.to_dict('records')
+        return render_template('recommendation.html', movies=movies_list)
     else:
-        return render_template('recommendation.html', 
-                               title="Sorry, no movies found matching your criteria.",
-                               genre="", 
-                               rating="")
+        # Pass an empty list if no movies were found
+        return render_template('recommendation.html', movies=[])
+
 
 @app.route('/about')
 def about():
     return render_template('about.html')  # Ensure you have an about.html template
+
+@app.route('/ultimate-predictor')
+def ultimatepredictor():
+    return render_template('ultimate-predictor.html')  # Ensure you have an about.html template
 
 
 if __name__ == '__main__':

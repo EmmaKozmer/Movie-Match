@@ -7,19 +7,29 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <!-- menu -->
+    <!-- Menu -->
     <nav class="navbar">
         <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/about">About</a></li>
+            <li><a href="/ultimate-predictor">✨Ultimate Predictor✨</a></li>
         </ul>
     </nav>
     <div class="container">
-        <h1>Your Movie Match</h1>
+        <h1>Your Movie Matches</h1>
         <p class="intro">Here's what we found for you!</p>
-        <p>Title: <strong>{{ title }}</strong></p>
-        <p>Genre: <strong>{{ genre }}</strong></p>
-        <p>Rating: <strong>{{ rating }}</strong></p>
+        <!-- Check if there are movies to display -->
+        {% if movies %}
+            {% for movie in movies %}
+                <div class="movie">
+                    <p>Title: <strong>{{ movie['movie_name'] }}</strong></p>
+                    <p>Genre: <strong>{{ movie['genre'] }}</strong></p>
+                    <p>Rating: <strong>{{ movie['rating'] }}</strong></p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Unfortunately, no movies were found matching your criteria.</p>
+        {% endif %}
         <a href="/" class="button">Take the Quiz Again</a>
     </div>
 </body>
