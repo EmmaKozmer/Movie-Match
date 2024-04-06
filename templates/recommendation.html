@@ -3,12 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Movie Recommendation</title>
+    <!-- Link to the CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Your Movie Match</h1>
-    <p>Title: {{ title }}</p>
-    <p>Genre: {{ genre }}</p>
-    <p>Rating: {{ rating }}</p>
-    <a href="/">Take the Quiz Again</a>
+    <!-- menu -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>Your Movie Match</h1>
+        <p class="intro">Here's what we found for you!</p>
+        <p>Title: <strong>{{ title }}</strong></p>
+        <p>Genre: <strong>{{ genre }}</strong></p>
+        <p>Rating: <strong>{{ rating }}</strong></p>
+        <a href="/" class="button">Take the Quiz Again</a>
+    </div>
 </body>
 </html>

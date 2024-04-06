@@ -1,15 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Movie Quiz</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <title>Movie Quiz</title>
+        <!-- Link to the CSS file -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
 <body>
-    <h1>Find Your Movie Match!</h1>
+    <!-- menu -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+        </ul>
+    </nav>
+    <h1>Welcome to Movie Match!</h1>
+    <!-- Image added below the title -->
+    <img src="{{ url_for('static', filename='images/movie.jpg') }}" alt="Find Your Movie Match">
+    <!-- Improved engaging text added below the image -->
+    <p class="intro-text">Ready to discover your next favorite movie? Answer a few simple questions below, and let Movie Match guide you to movie titles that suit your taste perfectly!</p>
     <form action="/recommend" method="post">
         <label for="genre">Preferred Genre:</label>
         <select name="genre" id="genre">
-            <option value="">Select a Genre</option> <!-- Default prompt option -->
+            <option value="">Select a Genre</option>
             <option value="action">Action</option>
             <option value="adventure">Adventure</option> <!-- Corrected label -->
             <option value="animation">Animation</option>
