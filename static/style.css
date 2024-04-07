@@ -17,33 +17,33 @@ body {
 
 h1 {
     color: #345b91;
-    text-align: center; /* Center the title */
+    text-align: center; /* center title */
 }
 
 .intro {
     font-size: 16px;
     margin-bottom: 20px;
-    text-align: center; /* Center intro text */
+    text-align: center; /* center intro text */
 }
 
 .quiz-form {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center; 
     grid-gap: 20px;
 }
 
 label {
     margin-bottom: 5px;
     font-weight: bold;
-    text-align: center; /* Center labels */
+    text-align: center; /* center labels */
 }
 
 label, select, input, button {
     display: block;
     width: 80%;
-    margin: 10px auto; /* Adjusted for top and bottom margin */
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    margin: 10px auto; 
+    box-sizing: border-box; 
 }
 
 select, input {
@@ -51,13 +51,13 @@ select, input {
     font-size: 14px;
     border: 1px solid rgb(4, 125, 169);
     border-radius: 5px;
-    background-color: #097ea8cb; /* Light background */
-    transition: border-color 0.3s ease-in-out; /* Smooth transition for focus */
+    background-color: #097ea8cb; 
+    transition: border-color 0.3s ease-in-out; 
 }
 
 select:focus, input:focus {
-    border-color: #007bff; /* Highlight focus */
-    outline: none; /* Remove default focus outline */
+    border-color: #007bff; 
+    outline: none; 
 }
 
 button {
@@ -68,11 +68,11 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease-in-out; /* Smooth transition for hover */
+    transition: background-color 0.3s ease-in-out; 
 }
 
 button:hover {
-    background-color: #b30000; /* Darker shade on hover */
+    background-color: #b30000; 
 }
 
 /* navigation menu */
@@ -108,17 +108,23 @@ img {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    max-width: 40%; /* Adjust this value as needed */
+    max-width: 40%; 
     height: auto;
 }
 
 .intro-text {
-    font-size: 18px;  /* Adjust font size as needed */
-    margin: 10px auto 20px; /* Top & Bottom margin adjusted to match form elements */
-    text-align: center; /* Center the text */
-    width: 80%; /* Match the width of form elements */
-    color: #333; /* Adjust the text color as needed */
+    font-size: 18px;  
+    margin: 10px auto 20px; 
+    text-align: center; 
+    width: 80%; 
+    color: #333; 
 }
 
-
-
+.movie {
+    margin: 20px 0; 
+    padding: 15px; 
+    border: 1px solid #ddd; 
+    background-color: #f9f9f9; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+    border-radius: 8px; 
+}

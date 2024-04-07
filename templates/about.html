@@ -1,15 +1,24 @@
+  <!-- html for the about-us page -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>About Movie Match</title>
+    <!-- Link to the CSS file -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+    <!-- menu -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/ultimate-predictor">✨Ultimate Predictor✨</a></li>
+        </ul>
+    </nav>
     <div class="container">
         <h1>About Us</h1>
         <p>Welcome to Movie Match! Here, we aim to help you discover movies you'll love based on your preferences.</p>
-        <a href="/">Back to Home</a>
     </div>
 </body>
 </html>

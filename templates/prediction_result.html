@@ -1,0 +1,36 @@
+<!-- html page to display the results of the ultimate predictor -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Prediciton</title>
+    <!-- Link to the CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Menu -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/ultimate-predictor">✨Ultimate Predictor✨</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>Your Movie Matches</h1>
+        <p class="intro">Here's what we found for you!</p>
+        <!-- check if there are movies to display -->
+        {% if movies %}
+            {% for movie in movies %}
+                <div class="movie">
+                    <p>Title: <strong>{{ movie['movie_name'] }}</strong></p>
+                    <p>Genre: <strong>{{ movie['genre'] }}</strong></p>
+                    <p>Rating: <strong>{{ movie['rating'] }}</strong></p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Unfortunately, no movies were found matching your criteria.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

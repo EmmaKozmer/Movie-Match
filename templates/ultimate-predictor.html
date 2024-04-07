@@ -2,14 +2,54 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>About Movie Match</title>
+    <title>Movie Quiz</title>
+    <!-- Link to the CSS file -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- JavaScript for real-time movie title validation -->
+    <script>
+        // Place your updateMovieTitles function here
+        function updateMovieTitles(value) {
+            fetch('/check-movie', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({movie_title: value}),
+            })
+            .then(response => response.json())
+            .then(data => {
+                const messageElement = document.getElementById('message');
+                if (!data.exists && value.trim() !== '') {
+                    messageElement.textContent = 'Sorry, we don\'t know about this movie.';
+                } else {
+                    messageElement.textContent = '';
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
 </head>
 <body>
-    <div class="container">
-        <h1>About Us</h1>
-        <p>Welcome to Movie Match! Here, we aim to help you discover movies you'll love based on your preferences.</p>
-        <a href="/">Back to Home</a>
-    </div>
+    <!-- menu -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/ultimate-predictor">✨Ultimate Predictor✨</a></li>
+        </ul>
+    </nav>
+    <h1>Congratulations! You've made it to the ✨Ultimate Predictor✨!</h1>
+    <!--image -->
+    <img src="{{ url_for('static', filename='images/predictor.jpg') }}" alt="Find Your Movie Match">
+    <p class="intro-text">Ready to experience a new era of movie prediction? The ultimate predictor will offer you a breathtaking experience. Let's try it out!</p>
+    <div id="message" class="message"></div> <!-- Message display element -->
+    
+    <form action="/predict" method="post">
+        <label for="movie_title">Please enter your favorite movie title:</label>
+        <input type="text" id="movie_title" name="movie_title" oninput="updateMovieTitles(this.value)" autocomplete="off">
+        <button type="submit">Let the ✨Ultimate Predictor✨ do its magic</button>
+    </form>
 </body>
 </html>
