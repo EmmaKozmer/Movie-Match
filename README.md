@@ -11,7 +11,7 @@ This Flask application serves as a movie recommendation system, leveraging a mac
 - Pandas
 - NumPy
 - PyTorch
-- Dataset: The application uses a specific dataset of movies for recommendations. Download the dataset in CSV format from the following Kaggle link and place it in the data/ directory within the application's folder. [IMDb Dataset of 50k Movie Reviews](https://www.kaggle.com/datasets/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews)
+- Dataset: The application uses a specific dataset of movies for recommendations. Download the dataset in CSV format from the following Kaggle link and place it in the data/ directory within the application's folder. [IMDb Dataset of 50k Movie Reviews](https://www.kaggle.com/datasets/rajugc/imdb-movies-dataset-based-on-genre?select=fantasy.csv)
 
 Ensure all requirements are met to avoid any issues with running the application.
 
@@ -51,5 +51,5 @@ Contributions to improve the application are welcome. Please follow these steps 
 
 
 ## Acknowledgements
-- This project uses data from [IMDb Dataset of 50k Movie Reviews](https://www.kaggle.com/datasets/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews).
+- This project uses data from [IMDb Dataset of 50k Movie Reviews](https://www.kaggle.com/datasets/rajugc/imdb-movies-dataset-based-on-genre?select=fantasy.csv).
 - Machine learning model powered by PyTorch.
