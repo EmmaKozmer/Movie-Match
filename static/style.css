@@ -1,36 +1,75 @@
-body {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+body, html {
+    height: 100%;
     margin: 0;
     padding: 0;
-    background-color: #abcdd6;
-    color: #333;
+    font-family: 'Zilla Slab', serif; /* Uses Zilla Slab font */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Centers content vertically and horizontally */
 }
 
-.container {
-    max-width: 600px;
-    margin: 40px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+#background-video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    filter: grayscale(100%); /* Grayscale filter for the video */
+    background-size: cover;
 }
 
-h1 {
-    color: #345b91;
-    text-align: center; /* center title */
-}
-
-.intro {
-    font-size: 16px;
-    margin-bottom: 20px;
-    text-align: center; /* center intro text */
+/* Center the title text */
+.title {
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2em; /* Adjust the size as needed */
+    color: #fff; /* White color for the title */
+    text-align: center;
 }
 
 .quiz-form {
+    position: absolute;
+    top: 60%; /* Adjust the position as needed */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    z-index: 100;
+}
+
+.navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Semi-transparent black background */
+    z-index: 101;
     display: flex;
-    flex-direction: column;
-    align-items: center; 
-    grid-gap: 20px;
+    justify-content: flex-start;
+    padding: 0 20px;
+    height: 60px; /* Define a specific height for the navbar */
+    align-items: center; /* Center-align the items vertically */
+}
+
+.navbar li a {
+    color: white;
+    padding: 0 20px; /* Adjust padding as necessary */
+    text-decoration: none;
+    height: 100%; /* Make anchor fill the navbar height */
+    display: flex;
+    align-items: center; /* Center text in the navbar vertically */
+}
+
+
+label, select, input, button, .navbar li a, img, .intro-text, .movie {
+    display: block;
+    margin: 10px auto; 
+    box-sizing: border-box; 
 }
 
 label {
@@ -39,31 +78,26 @@ label {
     text-align: center; /* center labels */
 }
 
-label, select, input, button {
-    display: block;
-    width: 80%;
-    margin: 10px auto; 
-    box-sizing: border-box; 
-}
-
 select, input {
+    width: 80%;
     padding: 8px;
     font-size: 14px;
-    border: 1px solid rgb(4, 125, 169);
+    border: 1px solid rgb(220, 196, 194);
     border-radius: 5px;
-    background-color: #097ea8cb; 
+    background-color: #a29696cb; 
     transition: border-color 0.3s ease-in-out; 
 }
 
 select:focus, input:focus {
-    border-color: #007bff; 
+    border-color: rgb(220, 196, 194); 
     outline: none; 
 }
 
 button {
+    width: 80%;
     margin-top: 20px;
     padding: 10px 15px;
-    background-color: #a40707;
+    background-color: #5ea8e9;
     color: white;
     border: none;
     border-radius: 5px;
@@ -75,29 +109,20 @@ button:hover {
     background-color: #b30000; 
 }
 
-/* navigation menu */
-.navbar {
-    background-color: #333;
-    overflow: hidden;
-}
-
 .navbar ul {
     list-style-type: none;
+    display: flex; /* Added for horizontal alignment */
     padding: 0;
     margin: 0;
+    width: 100%;
+    justify-content: flex-start; /* Aligns items to the start of the flex container */
 }
 
 .navbar li {
-    float: left;
+    /* float: left; Removed as it's not needed with flexbox */
+    margin-right: 20px; /* Added spacing between navigation items */
 }
 
-.navbar li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 20px;
-    text-decoration: none;
-}
 
 .navbar li a:hover {
     background-color: #ddd;
@@ -105,18 +130,18 @@ button:hover {
 }
 
 img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
     max-width: 40%; 
     height: auto;
+}
+
+.intro-text, .movie {
+    width: 80%; 
 }
 
 .intro-text {
     font-size: 18px;  
     margin: 10px auto 20px; 
     text-align: center; 
-    width: 80%; 
     color: #333; 
 }
 

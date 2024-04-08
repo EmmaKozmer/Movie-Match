@@ -1,11 +1,10 @@
-  <!-- html for the about-us page -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>About Movie Match</title>
-    <!-- Link to the CSS file -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Link to the CSS file, updated to 'aboutusstyle.css' -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='aboutusstyle.css') }}">
 </head>
 <body>
     <!-- menu -->
@@ -16,9 +15,15 @@
             <li><a href="/ultimate-predictor">✨Ultimate Predictor✨</a></li>
         </ul>
     </nav>
+
     <div class="container">
         <h1>About Us</h1>
         <p>Welcome to Movie Match! Here, we aim to help you discover movies you'll love based on your preferences.</p>
+        <!-- Placeholder images for the coders, replace 'coder1.jpg' and 'coder2.jpg' with actual image paths -->
+        <div class="coder-images">
+            <img src="path/to/coder1.jpg" alt="Coder 1" style="width:100px;height:100px;">
+            <img src="path/to/coder2.jpg" alt="Coder 2" style="width:100px;height:100px;">
+        </div>
     </div>
 </body>
 </html>
