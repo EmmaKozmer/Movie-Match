@@ -20,9 +20,11 @@ all_movies_df = pd.concat(
 
 predictor = predict.Predictor(10000)
 
-@app.route('/') # app route for home where the basic quiz takes place
-def quiz():
-    return render_template('quiz.html')
+# ----- app routes ------
+@app.route('/')
+def basic_quiz():
+    return render_template('basic_quiz.html')
+
 
 @app.route('/recommend', methods=['POST']) # app route for the results of the basic quiz
 def recommend():

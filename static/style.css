@@ -1,47 +1,21 @@
+/* General styles */
+
 @import url('https://fonts.googleapis.com/css2?family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+/* body styles */
 body, html {
     height: 100%;
     margin: 0;
     padding: 0;
-    font-family: 'Zilla Slab', serif; /* Uses Zilla Slab font */
+    font-family: 'Zilla Slab', serif;
     display: flex;
-    justify-content: center;
-    align-items: center; /* Centers content vertically and horizontally */
+    flex-direction: column;
+    align-items: center; 
+    justify-content: flex-start; 
+    padding-top: 50px; 
 }
 
-#background-video {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    z-index: -100;
-    filter: grayscale(100%); /* Grayscale filter for the video */
-    background-size: cover;
-}
-
-/* Center the title text */
-.title {
-    position: absolute;
-    top: 0%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 2em; /* Adjust the size as needed */
-    color: #fff; /* White color for the title */
-    text-align: center;
-}
-
-.quiz-form {
-    position: absolute;
-    top: 60%; /* Adjust the position as needed */
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 20px;
-    z-index: 100;
-}
-
+/* navbar styles */
 .navbar {
     position: absolute;
     top: 0;
@@ -65,50 +39,6 @@ body, html {
     align-items: center; /* Center text in the navbar vertically */
 }
 
-
-label, select, input, button, .navbar li a, img, .intro-text, .movie {
-    display: block;
-    margin: 10px auto; 
-    box-sizing: border-box; 
-}
-
-label {
-    margin-bottom: 5px;
-    font-weight: bold;
-    text-align: center; /* center labels */
-}
-
-select, input {
-    width: 80%;
-    padding: 8px;
-    font-size: 14px;
-    border: 1px solid rgb(220, 196, 194);
-    border-radius: 5px;
-    background-color: #a29696cb; 
-    transition: border-color 0.3s ease-in-out; 
-}
-
-select:focus, input:focus {
-    border-color: rgb(220, 196, 194); 
-    outline: none; 
-}
-
-button {
-    width: 80%;
-    margin-top: 20px;
-    padding: 10px 15px;
-    background-color: #5ea8e9;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out; 
-}
-
-button:hover {
-    background-color: #b30000; 
-}
-
 .navbar ul {
     list-style-type: none;
     display: flex; /* Added for horizontal alignment */
@@ -129,11 +59,7 @@ button:hover {
     color: black;
 }
 
-img {
-    max-width: 40%; 
-    height: auto;
-}
-
+/* text and movie styles for recommendation and preditction results*/
 .intro-text, .movie {
     width: 80%; 
 }

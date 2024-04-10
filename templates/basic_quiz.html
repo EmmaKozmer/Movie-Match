@@ -4,15 +4,17 @@
     <head>
         <meta charset="UTF-8">
         <title>Movie Quiz</title>
-        <!-- Link to the CSS file -->
+        <!-- Link to style.css  -->
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <!-- Link to quizstyle.css -->
+        <link rel="stylesheet" href="static/basic_quiz_style.css">
     </head>
-    <body>
+    <body class="basic quiz">
         <video autoplay loop muted playsinline id="background-video">
             <source src="{{ url_for('static', filename='videos/amelie.mp4') }}" type="video/mp4">
             Your browser does not support the video tag.
         </video>
-    
+
         <div class="content">
             <nav class="navbar">
                 <ul>
@@ -21,6 +23,11 @@
                     <li><a href="/ultimate-predictor">✨Ultimate Predictor✨</a></li>
                 </ul>
             </nav>
+
+            <!-- Big title and text -->
+            <h1>Welcome to Movie Match!</h1>
+            <p>To get started, let's take our basic quiz below or switch to the ultimate predictor for a breathtaking experience.</p>
+    
             
             <form action="/recommend" method="post" class="quiz-form">
                 <label for="genre">What is your preferred genre?</label>
@@ -51,6 +58,5 @@
             </form>
         </div>
     </body>
-    
 <body>
 </html>
