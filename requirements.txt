@@ -1,1 +1,3 @@
-torch==2.2.2
+pip install torch
+pip install pandas
+pip install huggingface_hub

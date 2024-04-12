@@ -1,7 +1,9 @@
+
 from flask import Flask, render_template, request, redirect, url_for, flash
+from src.data_loader import load_movie_data 
 
 import os
-import predict
+import src.predict as predict
 import pandas as pd    
 import numpy as np
 
@@ -9,16 +11,17 @@ import numpy as np
 app = Flask(__name__) # initialize flask application
 
 data_folder = "data/" # path to the dataset folder
+all_movies_df = load_movie_data(data_folder)  # load all movie data in a DataFrame
 
-csv_files = [f for f in os.listdir(data_folder) if f.endswith('.csv')] # list all CSV files in data direcory
+# initialize the predictor for the local filesystem model
+local_model_path = "models/movie_predictor_model.pth"
+local_predictor = predict.Predictor(10000, model_source='filesystem', model_path=local_model_path)
 
-# load all CSV files into a single DataFrame
-all_movies_df = pd.concat(
-    (pd.read_csv(f"{data_folder}{file}") for file in csv_files),
-    ignore_index=True
-)
+# initialize the predictor for the Hugging Face model
+#huggingface_model_name = 'Emm180/movie_match_model'
+#huggingface_filename = 'movie_predictor_model_368K.pth'
+#hf_predictor = predict.Predictor(368000, model_source='huggingface', huggingface_model_name=huggingface_model_name, huggingface_filename=huggingface_filename)
 
-predictor = predict.Predictor(10000)
 
 # ----- app routes ------
 @app.route('/')

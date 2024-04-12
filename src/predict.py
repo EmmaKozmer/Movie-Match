@@ -1,8 +1,11 @@
+# prection logic
+
 import torch
 import torch.nn as nn
 import torch.optim as optim
 
 from torch.utils.data import DataLoader, Dataset
+from .model_utils import load_model_from_filesystem, load_model_from_huggingface
 
 
 class MovieIDPredictor(nn.Module):
@@ -33,44 +36,30 @@ class MovieIDPredictor(nn.Module):
         output = self.fc_out(x)
         return output
 
-
 class Predictor:
-    def __init__(self, num_movie_ids) -> None:
-        self.loaded_model = MovieIDPredictor(num_movie_ids=num_movie_ids)
+    def __init__(self, num_movie_ids, model_source='filesystem', model_path=None, huggingface_model_name=None, huggingface_filename=None):
+        if model_source == 'huggingface':
+            if not huggingface_model_name or not huggingface_filename:
+                raise ValueError("Huggingface model name and filename must be provided for Hugging Face source")
+            self.loaded_model = load_model_from_huggingface(huggingface_model_name, huggingface_filename, num_movie_ids)
+        elif model_source == 'filesystem':
+            if not model_path:
+                raise ValueError("Model path must be provided for filesystem source")
+            self.loaded_model = load_model_from_filesystem(model_path, num_movie_ids)
+        else:
+            raise ValueError("Unsupported model source")
 
-        # load the state dictionary
-        self.loaded_model.load_state_dict(torch.load('movie_predictor_model.pth'))
-
-        # set the model to evaluation mode
         self.loaded_model.eval()
 
     def predict(self, movie_id, n):
-        """
-        Predicts the top n recommended movie_ids for a given movie_id.
-
-        Args:
-        movie_id (int): The movie ID for which recommendations are to be made.
-        n (int): The number of recommendations to return.
-
-        Returns:
-        list: A list of the top n recommended movie IDs.
-        """
-        # convert movie_id to a tensor and add a batch dimension (batch size = 1)
         movie_id_tensor = torch.tensor([movie_id], dtype=torch.long)
-
-        # ensure the model is in evaluation mode
-        self.loaded_model.eval()
-
-        with torch.no_grad(): 
+        with torch.no_grad():
             outputs = self.loaded_model(movie_id_tensor)
-
             _, recommended_ids = torch.topk(outputs, n + 1, dim=1)
-
-        # convert to a list and remove the input movie_id from the recommendations
         recommended_ids = recommended_ids[0].tolist()
         if movie_id in recommended_ids:
             recommended_ids.remove(movie_id)
-        else: 
+        else:
             recommended_ids.pop()
-
         return recommended_ids[:n]
+
