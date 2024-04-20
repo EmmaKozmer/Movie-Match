@@ -1,6 +1,7 @@
 import os
 import pandas as pd
 
+# Load all CSV files in the specified folder into a single DataFrame
 def load_movie_data(data_folder):
     """Load all CSV files in the specified folder into a single DataFrame."""
     csv_files = [f for f in os.listdir(data_folder) if f.endswith('.csv')]  # list all CSV files

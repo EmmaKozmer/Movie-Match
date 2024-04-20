@@ -1,27 +1,27 @@
 
 from flask import Flask, render_template, request, redirect, url_for, flash
 from src.data_loader import load_movie_data 
+from src.predict import Predictor
 
-import os
-import src.predict as predict
-import pandas as pd    
 import numpy as np
 
 # ----- flask application -------
 app = Flask(__name__) # initialize flask application
 
-data_folder = "data/" # path to the dataset folder
-all_movies_df = load_movie_data(data_folder)  # load all movie data in a DataFrame
-
-# initialize the predictor for the local filesystem model
+# path to the dataset folder and model path
+data_folder = "data/"
 local_model_path = "models/movie_predictor_model.pth"
-local_predictor = predict.Predictor(10000, model_source='filesystem', model_path=local_model_path)
 
-# initialize the predictor for the Hugging Face model
-#huggingface_model_name = 'Emm180/movie_match_model'
-#huggingface_filename = 'movie_predictor_model_368K.pth'
-#hf_predictor = predict.Predictor(368000, model_source='huggingface', huggingface_model_name=huggingface_model_name, huggingface_filename=huggingface_filename)
+# load all movie data in a DataFrame
+all_movies_df = load_movie_data(data_folder)
 
+# initialize the predictor for the local filesystem model - uncomment to use the small (10000) model for the ultimate predictor
+#local_model_path = "models/movie_predictor_model.pth"
+#predictor = Predictor(local_model_path, 10000)  # Assuming 10,000 is the number of movie IDs for the local model
+
+# initialize the predictor for the Hugging Face model - uncomment to use the large (368300) model for the ultimate predictor
+huggingface_model_identifier = 'Emm180/movie_match_model'
+predictor = Predictor(huggingface_model_identifier, 368300)  # Assuming 368,000 is the number of movie IDs for the Hugging Face model*
 
 # ----- app routes ------
 @app.route('/')
@@ -49,13 +49,16 @@ def recommend():
         # pass an empty list if no movies were found
         return render_template('recommendation.html', movies=[])
 
+
 @app.route('/about') # app route for the results of the basic quiz
 def about():
     return render_template('about.html')
 
+
 @app.route('/ultimate-predictor') # app route for the ultimate predictor
 def ultimatepredictor():
     return render_template('ultimate-predictor.html') 
+
 
 @app.route('/predict', methods=['POST']) # app route for the results of the ultimate predictor
 def predict():
