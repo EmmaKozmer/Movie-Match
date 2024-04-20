@@ -13,7 +13,7 @@ This Flask application serves as a movie recommendation system, leveraging a mac
 - PyTorch
 - Dataset: The application uses a specific dataset of movies for recommendations. Download the dataset in CSV format from the following Kaggle link and place it in the data/ directory within the application's folder. [IMDb Movie Dataset: All Movies by Genre](https://www.kaggle.com/datasets/rajugc/imdb-movies-dataset-based-on-genre?select=fantasy.csv)
 
-Ensure all requirements are met to avoid any issues with running the application.
+Ensure all requirements are met (install requirements.txt) to avoid any issues with running the application.
 
 
 ## Installation
