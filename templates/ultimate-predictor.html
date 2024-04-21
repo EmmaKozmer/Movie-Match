@@ -5,36 +5,42 @@
     <title>Movie Quiz</title>
     <!-- Link to the CSS file -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <!-- Link to quizstyle.css -->
+    <!-- Link to ultimate_predictor_style.css -->
     <link rel="stylesheet" href="static/ultimate_predictor_style.css">
     <!-- JavaScript for real-time movie title validation -->
     <script>
-        // Place your updateMovieTitles function here
         function updateMovieTitles(value) {
+            if (value.trim() === '') {
+                document.getElementById('message').textContent = '';
+                return; // Don't make an empty request if the input is empty
+            }
             fetch('/check-movie', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({movie_title: value}),
+                body: JSON.stringify({movie_title: value})
             })
             .then(response => response.json())
             .then(data => {
                 const messageElement = document.getElementById('message');
-                if (!data.exists && value.trim() !== '') {
+                if (!data.exists) {
                     messageElement.textContent = 'Sorry, we don\'t know about this movie.';
+                    messageElement.style.color = 'red'; // Make the message red for better visibility
                 } else {
                     messageElement.textContent = '';
                 }
             })
-            .catch((error) => {
+            .catch(error => {
                 console.error('Error:', error);
+                document.getElementById('message').textContent = 'An error occurred while verifying the movie.';
+                document.getElementById('message').style.color = 'red';
             });
         }
     </script>
 </head>
 <body>
-    <!-- menu -->
+    <!-- Menu -->
     <nav class="navbar">
         <ul>
             <li><a href="/">Home</a></li>
@@ -43,14 +49,14 @@
         </ul>
     </nav>
     <h1>Congratulations! You've made it to the ✨Ultimate Predictor✨!</h1>
-    <!--image -->
+    <!-- Image -->
     <img src="{{ url_for('static', filename='images/predictor.jpg') }}" alt="Find Your Movie Match">
     <p class="intro-text">Ready to experience a new era of movie prediction? The ultimate predictor will offer you a breathtaking experience. Let's try it out!</p>
     <div id="message" class="message"></div> <!-- Message display element -->
     
     <form action="/predict" method="post">
         <label for="movie_title">Please enter your favorite movie title:</label>
-        <input type="text" id="movie_title" name="movie_title" oninput="updateMovieTitles(this.value)" autocomplete="off">
+        <input type="text" id="movie_title" name="movie_title" oninput="updateMovieTitles(this.value)" autocomplete="off" required>
         <button type="submit">Let the ✨Ultimate Predictor✨ do its magic</button>
     </form>
 </body>

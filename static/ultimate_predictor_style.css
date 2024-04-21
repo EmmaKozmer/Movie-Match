@@ -1,10 +1,15 @@
 /* specific styles for the ulltimate predictor */
-
+@font-face {
+    font-family: 'Meqanor';
+    src: url('/static/fonts/Meqanor.otf') format('opentype');
+}
 /* intro text styles */
 .intro-text {
     color: #555;
     text-align: center;
     max-width: 600px;
+    font-family: 'Meqanor';
+    src: url('/static/fonts/Meqanor.otf') format('opentype');
     margin-bottom: 30px;
 }
 

@@ -1,62 +1,59 @@
- <!-- html for the basic quiz -->
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Movie Quiz</title>
-        <!-- Link to style.css  -->
-        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-        <!-- Link to quizstyle.css -->
-        <link rel="stylesheet" href="static/basic_quiz_style.css">
-    </head>
-    <body class="basic quiz">
-        <video autoplay loop muted playsinline id="background-video">
-            <source src="{{ url_for('static', filename='videos/amelie.mp4') }}" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Quiz</title>
+    <!-- Link to style.css  -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Link to quizstyle.css -->
+    <link rel="stylesheet" href="static/basic_quiz_style.css">
+</head>
+<body class="basic quiz">
+    <video autoplay loop muted playsinline id="background-video">
+        <source src="{{ url_for('static', filename='videos/amelie.mp4') }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
 
-        <div class="content">
-            <nav class="navbar">
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/about">About</a></li>
-                    <li><a href="/ultimate-predictor">✨Ultimate Predictor✨</a></li>
-                </ul>
-            </nav>
+    <div class="content">
+        <nav class="navbar">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/ultimate-predictor">✨Ultimate Predictor✨</a></li>
+            </ul>
+        </nav>
 
-            <!-- Big title and text -->
-            <h1>Welcome to Movie Match!</h1>
-            <p>To get started, let's take our basic quiz below or switch to the ultimate predictor for a breathtaking experience.</p>
-    
+        <!-- Big title and text -->
+        <h1>Welcome to Movie Match!</h1>
+        <p>To get started, let's take our basic quiz below or switch to the ultimate predictor for a breathtaking experience.</p>
+
+        <form action="/recommend" method="post" class="quiz-form">
+            <label for="genre">What is your preferred genre?</label>
+            <select name="genre" id="genre" required>
+                <option value="">Select a Genre</option>
+                <option value="action">Action</option>
+                <option value="adventure">Adventure</option> 
+                <option value="animation">Animation</option>
+                <option value="biography">Biography</option>
+                <option value="crime">Crime</option>
+                <option value="family">Family</option>
+                <option value="fantasy">Fantasy</option>
+                <option value="film-noir">Film-Noir</option>
+                <option value="history">History</option>
+                <option value="horror">Horror</option>
+                <option value="mystery">Mystery</option>
+                <option value="romance">Romance</option>
+                <option value="sci-fi">Sci-Fi</option> 
+                <option value="sports">Sports</option>
+                <option value="thriller">Thriller</option>
+                <option value="war">War</option>
+            </select>
             
-            <form action="/recommend" method="post" class="quiz-form">
-                <label for="genre">What is your preferred genre?</label>
-                <select name="genre" id="genre">
-                    <option value="">Select a Genre</option>
-                    <option value="action">Action</option>
-                    <option value="adventure">Adventure</option> 
-                    <option value="animation">Animation</option>
-                    <option value="biography">Biography</option>
-                    <option value="crime">Crime</option>
-                    <option value="family">Family</option>
-                    <option value="fantasy">Fantasy</option>
-                    <option value="film-noir">Film-Noir</option>
-                    <option value="history">History</option>
-                    <option value="horror">Horror</option>
-                    <option value="mystery">Mystery</option>
-                    <option value="romance">Romance</option>
-                    <option value="sci-fi">Sci-Fi</option> 
-                    <option value="sports">Sports</option>
-                    <option value="thriller">Thriller</option>
-                    <option value="war">War</option>
-                </select>
-                
-                <label for="rating">What should be the minimum rating (1-10) of the movie?</label>
-                <input type="number" id="rating" name="rating" min="1" max="10">
-                
-                <button type="submit">Find My Movie Match</button>
-            </form>
-        </div>
-    </body>
-<body>
+            <label for="rating">What should be the minimum rating (1-10) of the movie?</label>
+            <input type="number" id="rating" name="rating" min="1" max="10" required placeholder="Enter a number between 1 and 10">
+            
+            <button type="submit">Find My Movie Match</button>
+        </form>
+    </div>
+</body>
 </html>

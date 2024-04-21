@@ -17,15 +17,25 @@
             <li><a href="/ultimate-predictor">✨Ultimate Predictor✨</a></li>
         </ul>
     </nav>
-
     <div class="container">
         <h1>About Us</h1>
         <p>Welcome to Movie Match! Here, we aim to help you discover movies you'll love based on your preferences.</p>
-        <!-- Placeholder images for the coders, replace 'coder1.jpg' and 'coder2.jpg' -->
         <div class="coder-images">
-            <img src="path/to/coder1.jpg" alt="Coder 1" style="width:100px;height:100px;">
-            <img src="path/to/coder2.jpg" alt="Coder 2" style="width:100px;height:100px;">
+            <div class="image-tooltip-wrapper">
+                <a href="https://www.linkedin.com/in/emma-kozmer" target="_blank">
+                    <img src="{{ url_for('static', filename='images/Emmaremoved.png') }}" alt="Coder 1" style="width:100px;height:100px;">
+                </a>
+                <span class="tooltip-text">Emma - Lead Developer</span>
+            </div>
+            <div class="image-tooltip-wrapper">
+                <a href="https://www.linkedin.com/in/luisamueller" target="_blank">
+                    <img src="{{ url_for('static', filename='images/Luisaremoved.png') }}" alt="Coder 2" style="width:100px;height:100px;">
+                </a>
+                <span class="tooltip-text">Luisa - UI/UX Designer</span>
+            </div>
         </div>
     </div>
+    
+      
 </body>
 </html>
