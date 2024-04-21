@@ -33,6 +33,17 @@ pip install Flask pandas numpy torch
 
 
 ## Usage
+There is the optional possibility to run it in a virtual environment. To do so on a mac, enter the following commands in your terminal: 
+
+1. /opt/homebrew/bin/python3 -m venv /Users/pathtoproject/Movie-Match/venv
+2. source /Users/pathtoproject/Movie-Match/venv/bin/activate
+3. pip3 install flask
+4. pip3 install torch
+5. pip3 install pandas 
+6. python app.py
+
+If you want to run it without creating a virtual enviromnent, simply follow continue with this step: 
+
 1. Start the Flask application.
 ```bash
 python app.py
