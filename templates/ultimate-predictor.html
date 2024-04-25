@@ -2,31 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Movie Quiz</title>
-    <!-- Link to the CSS file -->
+    <title>Ultimate Predictor</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <!-- Link to ultimate_predictor_style.css -->
     <link rel="stylesheet" href="static/ultimate_predictor_style.css">
-    <!-- JavaScript for real-time movie title validation -->
     <script>
+        let movieExists = true; // State to track if the movie exists
+
         function updateMovieTitles(value) {
             if (value.trim() === '') {
                 document.getElementById('message').textContent = '';
-                return; // Don't make an empty request if the input is empty
+                movieExists = true; // Assume valid unless checked
+                return;
             }
             fetch('/check-movie', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({movie_title: value})
             })
             .then(response => response.json())
             .then(data => {
                 const messageElement = document.getElementById('message');
+                movieExists = data.exists; // Update state based on response
                 if (!data.exists) {
                     messageElement.textContent = 'Sorry, we don\'t know about this movie.';
-                    messageElement.style.color = 'red'; // Make the message red for better visibility
+                    messageElement.style.color = 'red';
                 } else {
                     messageElement.textContent = '';
                 }
@@ -37,27 +36,34 @@
                 document.getElementById('message').style.color = 'red';
             });
         }
+
+        // Prevent form submission if the movie does not exist
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form');
+            form.addEventListener('submit', function(event) {
+                if (!movieExists) {
+                    event.preventDefault(); // Prevent form submission
+                    window.location.href = '/error'; // Redirect to error page
+                }
+            });
+        });
     </script>
 </head>
 <body>
-    <!-- Menu -->
     <nav class="navbar">
         <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/about">About</a></li>
-            <li><a href="/ultimate-predictor">✨Ultimate Predictor✨</a></li>
+            <li><a href="/ultimate-predictor">Ultimate Predictor</a></li>
         </ul>
     </nav>
-    <h1>Congratulations! You've made it to the ✨Ultimate Predictor✨!</h1>
-    <!-- Image -->
-    <img src="{{ url_for('static', filename='images/predictor.jpg') }}" alt="Find Your Movie Match">
+    <h1>Congratulations! You've made it to the Ultimate Predictor!</h1>
     <p class="intro-text">Ready to experience a new era of movie prediction? The ultimate predictor will offer you a breathtaking experience. Let's try it out!</p>
-    <div id="message" class="message"></div> <!-- Message display element -->
-    
+    <div id="message" class="message"></div>
     <form action="/predict" method="post">
         <label for="movie_title">Please enter your favorite movie title:</label>
         <input type="text" id="movie_title" name="movie_title" oninput="updateMovieTitles(this.value)" autocomplete="off" required>
-        <button type="submit">Let the ✨Ultimate Predictor✨ do its magic</button>
+        <button type="submit">Let the Ultimate Predictor do its magic</button>
     </form>
 </body>
 </html>

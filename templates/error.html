@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Error - Movie Quiz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="static/ultimate_predictor_style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/ultimate-predictor">Ultimate Predictor</a></li>
+        </ul>
+    </nav>
+    <h1>Oops! Did we say that movie existed?</h1>
+    <div class="error-message">
+        <p>We couldn't find the movie you were looking for, or an unexpected error occurred.</p>
+        <p>Check the movie title and try again, or navigate back to other sections of the website.</p>
+        <div class="action-buttons">
+            <a href="/ultimate-predictor" class="button">Try Again</a>
+            <a href="/" class="button">Go to Home</a>
+        </div>
+    </div>
+</body>
+</html>

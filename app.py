@@ -92,12 +92,17 @@ def predict():
 
     return render_template('prediction_result.html', movies=list_of_dicts)
 
+@app.route('/error')
+def error():
+    return render_template('error.html')
 
-@app.route('/check-movie', methods=['POST']) # app route for check-movie
+@app.route('/check-movie', methods=['POST'])
 def check_movie():
-    movie_title = request.json['movie_title'].lower() 
+    movie_title = request.json['movie_title'].lower()
     movie_exists = movie_title in all_movies_df['movie_name'].str.lower().unique().tolist()
-    return {'exists': movie_exists}
+    return jsonify(exists=movie_exists)
+
+
 
 
 # ----- start the flask application ------

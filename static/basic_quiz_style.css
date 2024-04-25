@@ -1,15 +1,16 @@
 /* specific styles for the basic quiz */
+/* General styles */
 @font-face {
-    font-family: 'Meqanor';
-    src: url('/static/fonts/Meqanor.otf') format('opentype');
+    font-family: 'Gratia';
+    src: url('/static/fonts/gratia-sans.regular.ttf') format('opentype');
 }
 /* style for .content to align items in a column */
 .content {
     text-align: center;
     max-width: 600px; 
     margin: 0 auto; 
-    font-family: 'Meqanor';
-    src: url('/static/fonts/Meqanor.otf') format('opentype');
+    font-family: 'Gratia';
+    src: url('/static/fonts/gratia-sans.regular.ttf') format('opentype');
     padding-top: 80px; 
     display: flex;
     flex-direction: column;

@@ -1,13 +1,12 @@
 @font-face {
-    font-family: 'Meqanor';
-    src: url('/static/fonts/Meqanor.otf') format('opentype');
+    font-family: 'Gratia';
+    src: url('/static/fonts/gratia-sans.regular.ttf') format('opentype');
 }
-
 /* Body Styles */
 body {
     background-color: #f0f0f0;
     color: #000;
-    font-family: 'Meqanor', sans-serif; /* Ensure the font family falls back to a generic font if custom font fails */
+    font-family: 'Gratia';/* Ensure the font family falls back to a generic font if custom font fails */
     margin: 0;
     padding: 0;
 }
@@ -77,4 +76,18 @@ body {
 .coder-images img:hover {
     transform: scale(1.1);
     cursor: pointer; /* Indicates the image can be clicked */
+}
+
+.info-block {
+    padding: 15px; /* Reduced padding for a more compact look */
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: justify; /* Justifies the text, making it spread evenly */
+    width: 40%; /* Sets the width to 60% of its container */
+    margin-left: auto;
+    margin-right: auto; /* Centers the block within its container */
+}
+
+.centered-title {
+    text-align: center; /* Centers the title text within the .info-block */
 }

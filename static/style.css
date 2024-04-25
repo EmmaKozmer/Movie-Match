@@ -1,16 +1,15 @@
 /* General styles */
 @font-face {
-    font-family: 'Meqanor';
-    src: url('/static/fonts/Meqanor.otf') format('opentype');
+    font-family: 'Gratia';
+    src: url('/static/fonts/gratia-sans.regular.ttf') format('opentype');
 }
-
 /* body styles */
 body, html {
     height: 100%;
     margin: 0;
     padding: 0;
-    font-family: 'Meqanor';
-    src: url('/static/fonts/Meqanor.otf') format('opentype');
+    font-family: 'Gratia';
+    src: url('/static/fonts/gratia-sans.regular.ttf') format('opentype');
     display: flex;
     flex-direction: column;
     align-items: center; 
