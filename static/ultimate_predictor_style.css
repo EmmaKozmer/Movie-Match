@@ -5,7 +5,7 @@
 }
 /* intro text styles */
 .intro-text {
-    color: #555;
+    color: #ffffff;
     text-align: center;
     max-width: 600px;
     font-family: 'Gratia';
@@ -68,4 +68,19 @@ button:hover {
     color: #d9534f; /* Bootstrap 'danger' red for error messages */
     margin: 10px 0;
     font-weight: bold;
+}
+/* Video styles unchanged */
+#background-video {
+    position: fixed; /* Keeps the video in place even on scrolling */
+    top: 0;
+    left: 0;
+    width: 130vw; /* 100% of the viewport width */
+    height: 100vh; /* 100% of the viewport height */
+    object-fit: cover; /* Ensures the video covers the area without losing aspect ratio */
+    z-index: -1; /* Set to -1 to ensure it stays behind other content */
+    filter: grayscale(100%); /* If you want the video to be in grayscale */
+}
+
+body {
+    color: white;
 }

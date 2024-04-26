@@ -51,7 +51,7 @@ body {
     visibility: hidden;
     color: black;
     font-size: 16px;
-    margin-top: 5px; /* Space between image and text */
+    margin-top: 10px; /* Space between image and text */
     
     /* Fade-in effect */
     opacity: 0;
@@ -79,7 +79,7 @@ body {
 }
 
 .info-block {
-    padding: 15px; /* Reduced padding for a more compact look */
+    padding: 80px; /* Reduced padding for a more compact look */
     border-radius: 5px;
     margin-bottom: 20px;
     text-align: justify; /* Justifies the text, making it spread evenly */
@@ -90,4 +90,57 @@ body {
 
 .centered-title {
     text-align: center; /* Centers the title text within the .info-block */
+}
+/* Tooltip and Profile Text Styles */
+.tooltip-text, .profile-text {
+    visibility: hidden;
+    color: black;
+    font-size: 16px;
+    margin-top: 5px;
+    text-align: center; /* Centers the tooltip text */
+    
+    /* Fade-in effect */
+    opacity: 0;
+    transition: opacity 0.7s, visibility 0.4s;
+}
+
+.image-tooltip-wrapper:hover .tooltip-text,
+.image-tooltip-wrapper:hover .profile-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Adjusting Image Styles for better hover effect */
+.coder-images img {
+    border-radius: 50%;
+    border: 2px solid #000;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.coder-images img:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+    box-shadow: 0 0 8px #666; /* Adds shadow to enhance the hover effect */
+}
+
+/* Profile Text Specific Styles */
+.profile-text {
+    display: block; /* Ensures the text is treated as a block */
+    visibility: hidden;
+    color: black;
+    font-size: 12px; /* Smaller font size for the profile text */
+    width: 40%; /* The width matches the container text above */
+    transition: opacity 0.7s, visibility 0.4s;
+    margin-top: 20px; /* Larger space between the image and the text block */
+    text-align: center; /* Centers the profile text */
+    margin-left: auto; /* Center the block horizontally */
+    margin-right: auto; /* Center the block horizontally */
+}
+
+.image-tooltip-wrapper:hover .profile-text {
+    visibility: visible;
+    opacity: 1;
 }

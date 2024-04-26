@@ -11,7 +11,7 @@
     margin: 0 auto; 
     font-family: 'Gratia';
     src: url('/static/fonts/gratia-sans.regular.ttf') format('opentype');
-    padding-top: 80px; 
+    padding-top: 10px; 
     display: flex;
     flex-direction: column;
     align-items: center; 
