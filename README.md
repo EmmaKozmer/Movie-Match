@@ -39,8 +39,9 @@ There is the optional possibility to run it in a virtual environment. To do so o
 2. source /Users/pathtoproject/Movie-Match/venv/bin/activate
 3. pip3 install flask
 4. pip3 install torch
-5. pip3 install pandas 
-6. python app.py
+5. pip3 install pandas
+6. pip3 install huggingface_hub
+7. python app.py
 
 If you want to run it without creating a virtual enviromnent, simply follow continue with this step: 
 
