@@ -32,32 +32,30 @@ def basic_quiz():
 @app.route('/recommend', methods=['POST'])
 def recommend():
     # get user input from the form
-    preferred_genre = request.form.get('genre')  # Using .get for safer access
-    minimum_rating = float(request.form.get('rating', 0))  # Default to 0 if not found
-    # Filter the dataset for movies that match the preferences
+    preferred_genre = request.form.get('genre')
+    minimum_rating = float(request.form.get('rating', 0))  
+    
+    print(preferred_genre, minimum_rating)
+    print(len(all_movies_df))
+    # filter the dataset for movies that match the preferences
     filtered_movies = all_movies_df[
         (all_movies_df['genre'].str.contains(preferred_genre, case=False, na=False)) &
         (all_movies_df['rating'] >= minimum_rating)
     ]
-
+    print(len(filtered_movies))
     # select a random movie from the filtered dataset
     # check if any movies were found
     if not filtered_movies.empty:
-        recommended_movie = filtered_movies.sample(1).iloc[0]
-        return render_template('recommendation.html', 
-                               title=recommended_movie['movie_name'],  # Adjusted to use the correct column name
-                               genre=recommended_movie['genre'], 
-                               rating=recommended_movie['rating'])
-        # convert DataFrame to a list of dictionaries for easier handling in the template
-        movies_list = filtered_movies.to_dict('records')
-        return render_template('recommendation.html', movies=movies_list)
+        recommended_movie = filtered_movies.sample(5)
+        print(recommended_movie)
+        return render_template('recommendation.html', movies=recommended_movie.to_dict('records'))
+        
     else:
         return render_template('recommendation.html', 
                                title="Sorry, no movies found matching your criteria.",
                                genre="", 
                                rating="")
-        # pass an empty list if no movies were found
-        return render_template('recommendation.html', movies=[])
+       
 
 
 @app.route('/about') # app route for the results of the basic quiz
