@@ -31,7 +31,7 @@ def basic_quiz():
 
 @app.route('/recommend', methods=['POST'])
 def recommend():
-    # Get user input from the form
+    # get user input from the form
     preferred_genre = request.form.get('genre')  # Using .get for safer access
     minimum_rating = float(request.form.get('rating', 0))  # Default to 0 if not found
     # Filter the dataset for movies that match the preferences
@@ -40,15 +40,15 @@ def recommend():
         (all_movies_df['rating'] >= minimum_rating)
     ]
 
-    # Select a random movie from the filtered dataset
-    # Check if any movies were found
+    # select a random movie from the filtered dataset
+    # check if any movies were found
     if not filtered_movies.empty:
         recommended_movie = filtered_movies.sample(1).iloc[0]
         return render_template('recommendation.html', 
                                title=recommended_movie['movie_name'],  # Adjusted to use the correct column name
                                genre=recommended_movie['genre'], 
                                rating=recommended_movie['rating'])
-        # Convert DataFrame to a list of dictionaries for easier handling in the template
+        # convert DataFrame to a list of dictionaries for easier handling in the template
         movies_list = filtered_movies.to_dict('records')
         return render_template('recommendation.html', movies=movies_list)
     else:
@@ -56,7 +56,7 @@ def recommend():
                                title="Sorry, no movies found matching your criteria.",
                                genre="", 
                                rating="")
-        # Pass an empty list if no movies were found
+        # pass an empty list if no movies were found
         return render_template('recommendation.html', movies=[])
 
 
@@ -111,9 +111,6 @@ def check_movie():
     movie_title = request.json['movie_title'].lower()
     movie_exists = movie_title in all_movies_df['movie_name'].str.lower().unique().tolist()
     return jsonify(exists=movie_exists)
-
-
-
 
 # ----- start the flask application ------
 if __name__ == '__main__':

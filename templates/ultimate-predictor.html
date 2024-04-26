@@ -1,3 +1,4 @@
+<!-- This is the HTML template for the Ultimate Predictor page. -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,12 +7,13 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="static/ultimate_predictor_style.css">
     <script>
-        let movieExists = true; // State to track if the movie exists
+        let movieExists = true;
 
+        // Check if the movie exists in the database
         function updateMovieTitles(value) {
             if (value.trim() === '') {
                 document.getElementById('message').textContent = '';
-                movieExists = true; // Assume valid unless checked
+                movieExists = true;
                 return;
             }
             fetch('/check-movie', {
@@ -22,7 +24,7 @@
             .then(response => response.json())
             .then(data => {
                 const messageElement = document.getElementById('message');
-                movieExists = data.exists; // Update state based on response
+                movieExists = data.exists; 
                 if (!data.exists) {
                     messageElement.textContent = 'Sorry, we don\'t know about this movie.';
                     messageElement.style.color = 'red';
@@ -42,8 +44,8 @@
             const form = document.querySelector('form');
             form.addEventListener('submit', function(event) {
                 if (!movieExists) {
-                    event.preventDefault(); // Prevent form submission
-                    window.location.href = '/error'; // Redirect to error page
+                    event.preventDefault(); 
+                    window.location.href = '/error';
                 }
             });
         });
@@ -54,7 +56,6 @@
         <source src="{{ url_for('static', filename='videos/babydriver.mp4') }}" type="video/mp4">
         Your browser does not support the video tag.
     </video>
-    <!-- Menu -->
     <nav class="navbar">
         <ul>
             <li><a href="/">Home</a></li>
