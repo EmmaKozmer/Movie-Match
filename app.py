@@ -1,5 +1,5 @@
 
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 from src.data_loader import load_movie_data 
 from src.predict import Predictor
 
@@ -29,24 +29,34 @@ def basic_quiz():
     return render_template('basic_quiz.html')
 
 
-@app.route('/recommend', methods=['POST']) # app route for the results of the basic quiz
+@app.route('/recommend', methods=['POST'])
 def recommend():
-    preferred_genre = request.form.get('genre')  # get genre as user input
-    minimum_rating = float(request.form.get('rating', 0)) # get minimum rating as user input
-
-    # filter the dataset for movies that match the preferences
+    # Get user input from the form
+    preferred_genre = request.form.get('genre')  # Using .get for safer access
+    minimum_rating = float(request.form.get('rating', 0))  # Default to 0 if not found
+    # Filter the dataset for movies that match the preferences
     filtered_movies = all_movies_df[
         (all_movies_df['genre'].str.contains(preferred_genre, case=False, na=False)) &
         (all_movies_df['rating'] >= minimum_rating)
     ]
 
-    # check if any movies were found
+    # Select a random movie from the filtered dataset
+    # Check if any movies were found
     if not filtered_movies.empty:
-        # convert DataFrame to a list of dictionaries for easier handling in the template
+        recommended_movie = filtered_movies.sample(1).iloc[0]
+        return render_template('recommendation.html', 
+                               title=recommended_movie['movie_name'],  # Adjusted to use the correct column name
+                               genre=recommended_movie['genre'], 
+                               rating=recommended_movie['rating'])
+        # Convert DataFrame to a list of dictionaries for easier handling in the template
         movies_list = filtered_movies.to_dict('records')
         return render_template('recommendation.html', movies=movies_list)
     else:
-        # pass an empty list if no movies were found
+        return render_template('recommendation.html', 
+                               title="Sorry, no movies found matching your criteria.",
+                               genre="", 
+                               rating="")
+        # Pass an empty list if no movies were found
         return render_template('recommendation.html', movies=[])
 
 
