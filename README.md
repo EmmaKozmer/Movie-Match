@@ -1,20 +1,17 @@
 # Welcome to Movie-Match!
-This Flask application serves as a movie recommendation system, leveraging a machine learning model built with PyTorch to provide movie suggestions based on user preference. This way every user should find a movie that fits. 
+This Flask application serves as a movie recommendation system that also leverages a machine learning model built with PyTorch to provide movie suggestions based on a user's preferred movie. We hope that this system will help every user find a movie that fits their interests.
 
 ## Features
-- **Basic Movie Recommendations**: Allows users to select their preferred genre and minimum rating to receive movie recommendations.
-- **Ultimate Predictor**: A machine learning-based feature that provides movie recommendations based on a favorite movie.
+- **Basic Movie Recommendation**: Allows users to select their preferred genre and minimum rating to receive movie recommendations generated through basic filtering.
+- **Ultimate Movie Prediction**: A machine learning based feature that provides a prediction of movies that the user may like based on the user's favorite movie.
 
 ## Requirements
 - Python 3.6+
 - Flask
 - Pandas
 - NumPy
-- PyTorch
-- Dataset: The application uses a specific dataset of movies for recommendations. Download the dataset in CSV format from the following Kaggle link and place it in the data/ directory within the application's folder. [IMDb Movie Dataset: All Movies by Genre](https://www.kaggle.com/datasets/rajugc/imdb-movies-dataset-based-on-genre?select=fantasy.csv)
-
-Ensure all requirements are met (install requirements.txt) to avoid any issues with running the application.
-
+- Torch
+- Dataset: The application uses a specific dataset of movies for recommendations. Download the dataset from the following Kaggle link and place all CSV files in a directory called "data" at the root of the projects directory. [IMDb Movie Dataset: All Movies by Genre](https://www.kaggle.com/datasets/rajugc/imdb-movies-dataset-based-on-genre?select=fantasy.csv)
 
 ## Installation
 1. Clone the repository to your local machine.
@@ -25,31 +22,42 @@ git clone <repository-url>
 ```bash
 cd <repository-name>
 ```
-3. Install the required Python packages.
+3. Make sure all requirements are installed.
 ```bash
-pip install Flask pandas numpy torch
+pip install -r requirements.txt
 ```
-4. Place your dataset(s) of movies in the data/ directory. Ensure each dataset is in CSV format.
+4. Place your dataset of movies in a directory named "data" at the root of the projects directory (ensure each dataset file is in CSV format)
 
 
 ## Usage
-There is the optional possibility to run it in a virtual environment. To do so on a mac, enter the following commands in your terminal: 
+**There is the optional possibility to run it in a virtual environment. To do so on a mac, enter the following commands in your terminal:**
 
-1. /opt/homebrew/bin/python3 -m venv /Users/pathtoproject/Movie-Match/venv
-2. source /Users/pathtoproject/Movie-Match/venv/bin/activate
-3. pip3 install flask
-4. pip3 install torch
-5. pip3 install pandas
-6. pip3 install huggingface_hub
-7. python app.py
+1. Create a Virtual Environment
+```bash
+  /opt/homebrew/bin/python3 -m venv /Users/pathtoproject/Movie-Match/venv
+```
+2. Activate the Virtual Environment
+```bash
+  source /Users/pathtoproject/Movie-Match/venv/bin/activate
+```
+3. Install Dependencies
+```bash
+  pip install -r requirements.txt
+```
+4. Run the Application
+```bash
+  python app.py
+```
+5. Open your web browser and navigate to http://127.0.0.1:5000/ to access the application (recommended to open in a private window - especially in for contribution).
+6. Follow the on-screen instructions to get movie recommendations or use the ultimate predictor feature.
 
-If you want to run it without creating a virtual enviromnent, simply follow continue with this step: 
+**If you want to run it without creating a virtual enviromnent, simply follow continue with this step:**
 
 1. Start the Flask application.
 ```bash
 python app.py
 ```
-2. Open your web browser and navigate to http://127.0.0.1:5000/ to access the application (private window if you wish to contribute).
+2. Open your web browser and navigate to http://127.0.0.1:5000/ to access the application (recommended to open in a private window - especially in for contribution).
 3. Follow the on-screen instructions to get movie recommendations or use the ultimate predictor feature.
 
 ## Contributing
